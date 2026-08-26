@@ -45,6 +45,19 @@ High-speed racing environments introduce several perception challenges. LiDAR po
 
 The goal of this project is to build a robust and efficient racing perception pipeline that goes beyond frame-by-frame detection by incorporating temporal tracking, vehicle geometry, track information, and motion priors.
 
+## Related Works
+
+This project is being extended with reference to several open-source and real-world autonomous-racing tracking systems.
+
+| Work | Key Idea | Relevance to This Project |
+|---|---|---|
+| [Shin et al., 2025 — Multi-Vehicle ARRC](https://doi.org/10.1016/j.jestch.2025.102164) | Multi-vehicle racing with 16-channel LiDAR, EKF-based orientation compensation, and Frenet-frame planning | Reference for robust vehicle orientation estimation and track-aware racing perception on an ERP42-class platform |
+| [DATMO](https://github.com/kostaskonkk/datmo) | Adaptive Breakpoint clustering, rectangle/L-shape fitting, CV and coordinated-turn tracking | Reference for range-adaptive clustering and vehicle geometry estimation; concepts will be adapted from 2D ROS to 3D ROS2 |
+| [F1TENTH ICRA Race Stack](https://github.com/vaithak/f1tenth-icra-race) | Adaptive Breakpoint obstacle clustering, bounding-box extraction, EKF velocity tracking, and real-time C++ implementation | Reference for replacing fixed DBSCAN parameters with lightweight range-adaptive clustering |
+| [TUMFTM FusionTracking](https://github.com/TUMFTM/FusionTracking) | CTRV-EKF object tracking, multi-modal fusion, and perception-delay compensation for autonomous racing | Reference for motion-model-based prediction, CTRV tracking, and future latency compensation |
+
+Rather than directly combining all of these methods, this repository will evaluate each component incrementally against the current **DBSCAN + CV Kalman Filter + Mahalanobis/Hungarian** baseline using the same racing data.
+
 ## Roadmap
 
 The current system will be extended step by step while keeping the existing tracker as a baseline.

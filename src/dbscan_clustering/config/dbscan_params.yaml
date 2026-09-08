@@ -1,0 +1,60 @@
+# dbscan_clustering parameters
+# - input_topic: topic to subscribe input PointCloud2 (ground removed)
+# - output_topic: topic to publish clustered PointCloud2
+# - eps: DBSCAN radius (meters)
+# - min_points: minimum neighbors to be a core point
+# - max_neighbors: per-point neighbor cap returned from GPU
+# - max_points: truncate input points above this
+# - queue_size: subscription queue size
+dbscan_clustering:
+  ros__parameters:
+    input_topic: /patchworkpp/nonground
+    output_topic: /pointcloud/clustered
+    # 여러 객체가 가까이 있을 때 지면 잔여점이 bridge가 되어 cluster가 합쳐지지 않게 보수적으로 둔다.
+    # 너무 멀리 있는 차량이 찢어지면 eps를 0.42~0.48 사이에서만 올린다.
+    eps: 0.40
+    min_points: 5
+    max_neighbors: 2048
+    max_points: 500000
+    queue_size: 1
+
+    # ROI: obstacle_filtering waypoint ROI와 전후방 범위를 맞춘다.
+    # 도로 위 판정은 obstacle_filtering에서 L1/R1 waypoint 반경으로 수행한다.
+    roi_min_x: -40.0
+    roi_max_x: 45.0   # 40→45m: 앞차 탐지 범위 확장 (범위 경계서 dropout 방지)
+    roi_min_y: -17.0
+    roi_max_y: 17.0
+    roi_min_z: -2.0
+    roi_max_z: 2.0
+    # Ego vehicle mask
+    enable_ego_box_filter: true
+    ego_box_xy_only: false
+    ego_box_offset_x: 0.2
+    ego_box_offset_y: 0.0
+    ego_box_offset_z: -0.57
+    # ERP42 (L 2.06m, W 1.16m, H 0.822m)
+    ego_min_x: -1.3
+    ego_max_x:  1.3
+    ego_min_y: -0.75
+    ego_max_y:  0.75
+    ego_min_z: -0.10
+    ego_max_z: 1.00
+
+    # 원기둥 등 수직 객체가 분리되지 않도록 XY 기준 클러스터링
+    cluster_xy_only: true
+    # x scale을 너무 낮추면 앞뒤로 떨어진 객체가 한 cluster로 붙는다.
+    # 이번 bag에서는 id=1/2/3/5가 서로 합쳐져서 x 압축을 완화한다.
+    cluster_scale_x: 0.70
+    cluster_scale_y: 1.30
+    cluster_scale_z: 1.0
+    xy_voxel_leaf_size: 0.05
+    enable_residual_ground_filter: true
+    residual_ground_filter_range_min_m: 2.5
+    # VLP-32 기준: 먼 거리일수록 차량 하단 ring이 더 낮은 z에 나타나므로 slope를 음수로 설정.
+    # threshold = base + slope*(range - 2.5)
+    #   5m:  -0.52 + (-0.010)*(5-2.5)  = -0.545m  (근거리, 기존과 유사하게 보수적)
+    #   17m: -0.52 + (-0.010)*(17-2.5) = -0.665m
+    #   25m: -0.52 + (-0.010)*(25-2.5) = -0.745m  (VLP-32 -1.333° ring z=-0.581m 통과)
+    #   30m: -0.52 + (-0.010)*(30-2.5) = -0.795m
+    residual_ground_z_base_m: -0.52
+    residual_ground_z_slope_per_m: -0.010

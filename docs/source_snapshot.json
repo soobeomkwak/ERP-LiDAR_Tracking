@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "scope": "Perception research packages only",
+  "source_date": "2026-09-08",
+  "source_modified_during_export": false,
+  "files": [
+    {
+      "path": "src/dbscan_clustering/CMakeLists.txt",
+      "sha256": "45c3717bd863e06d08e130a465b02bb399ba5f33bc616058759d28a65ff28383"
+    },
+    {
+      "path": "src/dbscan_clustering/README.md",
+      "sha256": "e34daf75719a1f9a83282710b23eb5c5c9d3cc6659344857490008099d2941b7"
+    },
+    {
+      "path": "src/dbscan_clustering/config/dbscan_params.yaml",
+      "sha256": "7253ae2a1a347d83c1d4b3f15b9a5ce9e3de2e99d6f926174ee180ae46d01e0a"
+    },
+    {
+      "path": "src/dbscan_clustering/include/dbscan_clustering/dbscan_gpu.cuh",
+      "sha256": "a638411c5b4a7d938a5be53f444b533428c6c4a71f219fb8fb462d6320a4e2d2"
+    },
+    {
+      "path": "src/dbscan_clustering/launch/dbscan_clustering.launch.py",
+      "sha256": "595e3975d4591cd531d6c89639dbed2503bc136241c647bb2fbc2e3f7e0d35a6"
+    },
+    {
+      "path": "src/dbscan_clustering/package.xml",
+      "sha256": "f3d1f5b0d35d6e5d060a16cdc43b61f0dac0f2d8a443c73f993da7d7b5d543eb"
+    },
+    {
+      "path": "src/dbscan_clustering/scripts/count_clusters.py",
+      "sha256": "97a617f5f8b3d21b7880d62562b1359b76b275bc8734e14ff7f23a280bef9a47"
+    },
+    {
+      "path": "src/dbscan_clustering/scripts/inspect_clustered.py",
+      "sha256": "46c4e92e6a835c72eeb936a81e08be8fa2020012557ec37a5255f57b780d38c2"
+    },
+    {
+      "path": "src/dbscan_clustering/scripts/inspect_raw.py",
+      "sha256": "9690ae844cee9692091ab9e7bdccea27f7ec9911269273845666284f8f62f196"
+    },
+    {
+      "path": "src/dbscan_clustering/scripts/inspect_raw_hex.py",
+      "sha256": "388d1a4dd39f31818b6cce66d14bc65b8025de0673f8319ea488d09b3e6d7637"
+    },
+    {
+      "path": "src/dbscan_clustering/src/dbscan_clustering_node.cpp",
+      "sha256": "12f684fa178e9a84cd261697705c941cffbb2b278c9e4c61d048760479bb5462"
+    },
+    {
+      "path": "src/dbscan_clustering/src/dbscan_gpu.cu",
+      "sha256": "f54d55e608739f06eebb580a3485c3a45506ef928e0fc0133bdc8d8af0c97cfd"
+    },
+    {
+      "path": "src/obstacle_filtering_real/CMakeLists.txt",
+      "sha256": "fbc1f8f42f21de5e276511bd36e10dfbda6e94b1a2e56593c86741d0fd4c1cdb"
+    },
+    {
+      "path": "src/obstacle_filtering_real/README.md",
+      "sha256": "e58537b0d91f238c3eb45db6cb53b4cf1debe575f6ce2864c313983d2073e6d5"
+    },
+    {
+      "path": "src/obstacle_filtering_real/config/obstacle_filtering.yaml",
+      "sha256": "511455a6fdc0b8cd793d133ab64de82d3a15b27a0b76fd9a1f3e3a86f6b11dfe"
+    },
+    {
+      "path": "src/obstacle_filtering_real/include/obstacle_filtering/waypoint_graph.hpp",
+      "sha256": "cfaf689d913ac1d0156b61c64333d227a81865be698d03959e199413d373b32f"
+    },
+    {
+      "path": "src/obstacle_filtering_real/launch/obstacle_filtering.launch.py",
+      "sha256": "22aaa4562e0bd87d25ac47d0f366b079f45948ba265ddbcb7c783459b81cd340"
+    },
+    {
+      "path": "src/obstacle_filtering_real/matlab/README_TUNING.md",
+      "sha256": "f8bc0edc102824291665dd9a8e408fcb33fb9c967636e89aca2ca5c9f5d3eae2"
+    },
+    {
+      "path": "src/obstacle_filtering_real/matlab/tune_yaw_offset_from_bag.m",
+      "sha256": "4343b0f8c3a844bb0521dd6d55fab60d7d558b1706a9e35c7b197f8cdec64882"
+    },
+    {
+      "path": "src/obstacle_filtering_real/matlab/visualize_obstacle_filtering.m",
+      "sha256": "98d0d1efa22977d362b9b1978a014dfcf8c38d66225b65205a22506328e5c7a4"
+    },
+    {
+      "path": "src/obstacle_filtering_real/package.xml",
+      "sha256": "86d28828c7d12b5ca08285c26eda0d347f61589bc5650f4ba6754b7face78c5e"
+    },
+    {
+      "path": "src/obstacle_filtering_real/src/obstacle_filtering_node.cpp",
+      "sha256": "e622a550a50373ca39eb46bc02017b20c33895db88036b71b70f1e3ee2112a0e"
+    },
+    {
+      "path": "src/obstacle_filtering_real/src/waypoint_graph.cpp",
+      "sha256": "03803c3627f5e7bf0f509a36587ce2b80dfb93285fe7099614fed163c85ed3f7"
+    },
+    {
+      "path": "src/lshape_fitting/CMakeLists.txt",
+      "sha256": "b93a301149c01acc362bf3904ee12b5d0cb257c2ddf2faed9d2c784a4370e2d8"
+    },
+    {
+      "path": "src/lshape_fitting/README.md",
+      "sha256": "d7c54566c42a77cf196821a0a1b7243b80ddc7fa36fa20165fe17fc1625be0e8"
+    },
+    {
+      "path": "src/lshape_fitting/config/lshape_params.yaml",
+      "sha256": "713f2bb27b2eca879056b652100aa670828c3b0e153e4a10adc0e20db54be497"
+    },
+    {
+      "path": "src/lshape_fitting/launch/lshape_fitting.launch.py",
+      "sha256": "c106d0d5002b7821ec54660560c8024136018ad8229406862b9631c378f75457"
+    },
+    {
+      "path": "src/lshape_fitting/msg/Detection2D.msg",
+      "sha256": "754482a32a4eb48601be0665605e81510181033829278bb8ff8a1bd1b3d70350"
+    },
+    {
+      "path": "src/lshape_fitting/msg/Detection2DArray.msg",
+      "sha256": "c21219c010d2966c1aea5ea3d750dfaa33561e9ecff421b1eb26e02a79d3b64f"
+    },
+    {
+      "path": "src/lshape_fitting/package.xml",
+      "sha256": "4b83220434974d9b3c5de11e3aafff2a15d8591f2816ff0213aef928500d83f8"
+    },
+    {
+      "path": "src/lshape_fitting/src/lshape_fitting_node.cpp",
+      "sha256": "bdbb0390c1f4ada53ba9a27b726f59c055f8bb39b8a70995f08d7644007c03bb"
+    },
+    {
+      "path": "src/obstacle_tracking/CMakeLists.txt",
+      "sha256": "0958a50a3802be63e4f871ac66cbf0d4f5ab655a938c026704c986672e58acff"
+    },
+    {
+      "path": "src/obstacle_tracking/config/integration/lshape_integration.yaml",
+      "sha256": "07dc74ff2f52bcb00350821174a6ff9b098fb24f4eae534b55ac269f97ab55b3"
+    },
+    {
+      "path": "src/obstacle_tracking/config/integration/obstacle_filtering_integration.yaml",
+      "sha256": "f0d64e8b09eedde955688b0798336dbd3b354893bba591803aa4e989b50bb2ba"
+    },
+    {
+      "path": "src/obstacle_tracking/config/integration/tracker_integration.yaml",
+      "sha256": "2f7d8c7645e902876665ff3f4ba41c28f1b313ff8d0067a0c61729d5add33f6a"
+    },
+    {
+      "path": "src/obstacle_tracking/config/tracker_params.yaml",
+      "sha256": "8373b7028c0cb8786b26addaa9fc6701e8b441ba1c2c7eb521f0d4285da61b5d"
+    },
+    {
+      "path": "src/obstacle_tracking/launch/obstacle_tracking.launch.py",
+      "sha256": "33988e6cf0cb28179a0a2d656739bd157b1025212af71e9e41375ce5b586572a"
+    },
+    {
+      "path": "src/obstacle_tracking/msg/Track2D.msg",
+      "sha256": "4a64452acbc9cb6304830f7fac69b544a15ce08db448531317af9fbf9e5b6c08"
+    },
+    {
+      "path": "src/obstacle_tracking/msg/Track2DArray.msg",
+      "sha256": "d0d5962e25cb20aa84851977d0f08c1d5725c7897a37f98c72d16b9a70f78f1a"
+    },
+    {
+      "path": "src/obstacle_tracking/msg/TrackDebug.msg",
+      "sha256": "ee3e192d319078d65c1c74c0d5b6cd1e8626acfdd3658ee830c08ced7bebeef2"
+    },
+    {
+      "path": "src/obstacle_tracking/msg/TrackDebugArray.msg",
+      "sha256": "b2a0b963a2f1bb73180842adb0cbcee4b1bd5f42ca8401710d96ebafbd2c5031"
+    },
+    {
+      "path": "src/obstacle_tracking/package.xml",
+      "sha256": "2af2eea9f87a2cf4200cfe81529881f53fdd5ce4d71b9334be898f51d1a41f04"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/analyze_tracked_state_bag.py",
+      "sha256": "6a8a87c80b6e70633629ec9e7a415380e003af6899cc5c6ca41710ff8a2efaa5"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/analyze_tracking_bag.py",
+      "sha256": "073e4bc34c283b0dea3c1985d847e1b94ae84dcd539037b89cb7d23754a98c2f"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/check_obstacle_absolute_state.py",
+      "sha256": "9816ce4a15f53276b7792e00c0a297b3494ed2faa2e4dd5235828ed7feb180fb"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/check_realtime_sensor_alignment.py",
+      "sha256": "107eec15f5f09130f120ed16f2801d1b8f0c2a179cdcd9ac113b81ccda0afe53"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/check_relative_velocity_consistency.py",
+      "sha256": "e4381e567f94e9e731ea6837a7f6d4be91fe0dad9f66ee1a173aa9d14421789d"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/check_stamp_alignment.py",
+      "sha256": "f0e01273baa2bacd45b752c03c4a38e7ef4eee0f952f5d93e6c0cadbe4f9dfc7"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/diagnose_tracking_velocity_flow.py",
+      "sha256": "9989e0a4f116ac15c9bff68ddbb1b595b0939248964b5c4f16fcb444a8c0cfd4"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/monitor_perception_pipeline.py",
+      "sha256": "329bfe73ba7512ecdf6895ec8be53dbdaca702066fdeb4728c6a88ea6f7306c3"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/plot_tracked_state_csv.m",
+      "sha256": "8ab8a7a1dcdec6371b144e37251e22a2dbfe7ea72def039a30d835f420ac3f37"
+    },
+    {
+      "path": "src/obstacle_tracking/scripts/validate_perception_outputs.py",
+      "sha256": "206ba628420fb8a99b4580074ca2eb25fb73b159cf4ea1cf859d23163fbe109a"
+    },
+    {
+      "path": "src/obstacle_tracking/src/obstacle_tracking_node.cpp",
+      "sha256": "e5ebad683b781512a043deed479b0f4a3a90986d841ef9e2f9872913e63009ac"
+    },
+    {
+      "path": "src/erp42_racing_perception/erp42_racing_perception/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/erp42_racing_perception/erp42_racing_perception/nodes/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/erp42_racing_perception/launch/perception_postprocess.launch.py",
+      "sha256": "9a12ebf1b23fa47fb6057068559cbeafce2c72a0fa5663caf3e23a387c55b176"
+    },
+    {
+      "path": "src/erp42_racing_perception/package.xml",
+      "sha256": "9d0a6bfbb24fbf77fd53a675277750006f7c20db4bff3c5b5066ba6dea2ec38a"
+    },
+    {
+      "path": "src/erp42_racing_perception/resource/erp42_racing_perception",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/erp42_racing_perception/setup.cfg",
+      "sha256": "7e4ee55c37b02fe0acc8722e26af69babc4977a143710a9787c4ee506c58f0aa"
+    },
+    {
+      "path": "src/erp42_racing_perception/setup.py",
+      "sha256": "083d09cc1cd3a1b888d18020f7d0494f3acfe5102fea6bf35edb2a874c17ad04"
+    },
+    {
+      "path": "src/erp42_racing_perception/test/test_copyright.py",
+      "sha256": "ea71bbbc6247b5c14d176ed09f39ee274d563cc9b2ec355828ea451ceff31757"
+    },
+    {
+      "path": "src/erp42_racing_perception/test/test_flake8.py",
+      "sha256": "37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2"
+    },
+    {
+      "path": "src/erp42_racing_perception/test/test_pep257.py",
+      "sha256": "e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda"
+    }
+  ]
+}

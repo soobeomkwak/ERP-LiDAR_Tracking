@@ -1,0 +1,7 @@
+lshape_fitting_node:
+  ros__parameters:
+    marker_topic: /target/markers
+    pose_vis_topic: ""
+    publish_outline: true
+    publish_text_markers: false
+    publish_ego_marker: false

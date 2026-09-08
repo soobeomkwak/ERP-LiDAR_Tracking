@@ -1,0 +1,12 @@
+std_msgs/Header header
+int32 track_id
+geometry_msgs/Pose pose
+geometry_msgs/Twist twist
+geometry_msgs/Pose map_pose
+geometry_msgs/Twist map_twist
+float32 length
+float32 width
+float32 confidence
+int32 age
+int32 hits
+int32 missed

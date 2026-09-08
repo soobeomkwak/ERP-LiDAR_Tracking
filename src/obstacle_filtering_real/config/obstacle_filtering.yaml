@@ -1,0 +1,60 @@
+obstacle_filtering:
+  ros__parameters:
+    input_cluster_topic: /pointcloud/clustered
+
+    map_frame: map
+    base_frame: base_link
+
+    # UTM waypoint CSV (L1/R1 lane-center waypoint lines).
+    # Filtering keeps clusters close to either lane-center line, not the full
+    # geometric road polygon. Keep this aligned with dbscan ROI for predictable
+    # perception range.
+    waypoint_csv_path: ""
+    front_waypoint_count: 150   # 150 × 0.3m = 45m 전방 (DBSCAN roi_max_x와 맞춤, wrap-around 안전)
+    rear_waypoint_count: 135    # 135 × 0.3m ≈ 40m 후방
+    waypoint_interp_step_m: 0.3
+    waypoint_window_use_lidar_roi: true
+    waypoint_roi_min_x_m: -40.0
+    waypoint_roi_max_x_m: 45.0
+    waypoint_roi_min_y_m: -20.0
+    waypoint_roi_max_y_m: 20.0
+
+    max_detection_range_m: 45.0
+    min_obstacle_distance_m: 1.5
+    # ego pose는 localization_tf가 발행하는 map->base_link TF를 cloud stamp 기준으로 lookup
+    # 코드 고정값: lookup timeout=20ms, fresh<=50ms, warn<=100ms, 초과/없음은 fail-closed
+    # nearest_wp_distance=min(dist_to_L1, dist_to_R1) 기준 히스테리시스 판정.
+    # 각 차선 폭 3m 기준 반폭은 1.5m지만, localization/TF/cluster 오차를 고려해
+    # 안전 우선으로 약간 넓게 잡는다.
+    # d <= in_radius_m: in, d >= out_radius_m: out, 사이는 이전 상태 유지
+    in_radius_m: 2.0
+    out_radius_m: 2.5
+    far_filter_range_m: 12.0
+    far_in_radius_m: 2.0
+    far_out_radius_m: 2.5
+    # 같은 cluster_id 안의 point 중 이 비율 이상이 waypoint 반경 안에 있어야 in.
+    # cluster가 도로 안/밖에 걸치거나 DBSCAN이 서로 다른 물체를 붙이면 이 값에 민감하다.
+    inside_point_ratio_threshold: 0.20
+    far_inside_point_ratio_threshold: 0.15
+
+    # Known static extrinsics (in base_link)
+    base_to_lidar_x_m: -0.2
+    base_to_lidar_y_m: 0.0
+    base_to_lidar_z_m: 0.57
+
+    cluster_field_name: cluster_id
+
+    # Runtime output (same PointCloud2 layout as /pointcloud/clustered, but cluster_id re-indexed by distance)
+    output_obstacle_in_topic: /obstacle_in
+    output_obstacle_out_topic: /obstacle_out
+
+    # Human-readable debug output
+    output_obstacle_in_debug_topic: /obstacle_in_debug
+    output_obstacle_out_debug_topic: /obstacle_out_debug
+
+    publish_debug_text: false
+    publish_debug_cloud: false
+    output_obstacle_in_cloud_topic: /obstacle_in_repr
+    output_obstacle_out_cloud_topic: /obstacle_out_repr
+
+    queue_size: 10

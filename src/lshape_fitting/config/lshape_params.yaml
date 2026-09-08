@@ -1,0 +1,94 @@
+lshape_fitting_node:
+  ros__parameters:
+    input_topic: /obstacle_in
+    marker_topic: /target/markers
+    pose_vis_topic: /target/poses_vis
+    detection_topic: /target/detections
+    queue_size: 1
+    output_frame_id: base_link
+    input_offset_x_m: 0.0
+    input_offset_y_m: 0.0
+    input_offset_z_m: 0.0
+
+    # Field name for DBSCAN cluster label in input PointCloud2.
+    # Try "cluster_id" first, then fallback to "cluster" internally.
+    cluster_field: cluster_id
+
+    # Cluster point count limits
+    min_cluster_points: 10
+    far_min_cluster_points: 3    # 원거리(>12m)에서 lidar 점밀도 감소 → 4→3점 완화
+    far_min_cluster_points_range_m: 12.0
+    max_cluster_points: 5000
+
+    # Search-based rectangle fitting (Xiao et al. 2017)
+    delta_theta_deg: 1.0
+    d0: 0.10
+    score_mode: closeness  # closeness | variance | area | hybrid
+    closeness_weight: 1.0
+    variance_weight: 1.0
+    use_pca_heading: true
+    pca_min_anisotropy_ratio: 1.40
+    force_heading_positive_x: false
+    enable_temporal_yaw_stabilization: true
+    temporal_yaw_match_distance_m: 1.5
+    temporal_yaw_size_weight: 0.5
+    temporal_yaw_alpha: 0.12
+    temporal_position_alpha: 0.45
+    temporal_size_alpha: 0.35
+    temporal_motion_heading_alpha: 1.00
+    temporal_motion_heading_min_distance_m: 0.35
+    yaw_freeze_low_confidence_threshold: 0.45
+    yaw_freeze_point_count_drop_ratio: 0.55
+    yaw_freeze_size_jump_m: 0.90
+    yaw_freeze_large_error_rad: 0.70
+
+    # ERP42 vehicle spec (meters)
+    # 플랫폼 크기(외장품 포함): 2.060 x 1.160 x 0.822 m
+    # 최저 지상고: 0.160 m, 윤거(전/후): 0.970 / 0.938 m, 축거: 1.212 m
+    fit_vehicle_spec_only: false
+    use_vehicle_size_prior: false
+    use_vehicle_height_gate: true
+    require_wheel_track_consistency: true
+    vehicle_size_weight: 3.0
+    vehicle_length_m: 2.060
+    vehicle_width_m: 1.160
+    vehicle_height_m: 0.822
+    vehicle_ground_clearance_m: 0.160
+    vehicle_track_front_m: 0.970
+    vehicle_track_rear_m: 0.938
+    vehicle_wheelbase_m: 1.212
+    vehicle_length_tolerance_m: 0.4
+    vehicle_width_tolerance_m: 0.25
+    vehicle_height_tolerance_m: 0.478
+
+    # Physical dimension filters (meters)
+    min_length: 0.20
+    max_length: 5.00
+    min_width: 0.15
+    max_width: 2.40
+    min_height: 0.05
+    max_height: 3.00
+    max_aspect_ratio: 8.00
+    reject_low_flat_clusters: true
+    low_flat_max_height_m: 0.22
+    low_flat_max_center_z_m: -0.50  # -0.35→-0.50: 원거리 차량 하단(지상 7cm 이상)이 오거부 방지
+    low_flat_min_length_m: 0.6
+
+    # Marker styles
+    marker_alpha: 0.0
+    marker_min_height: 0.20
+    use_fixed_output_height: true
+    fixed_output_height_m: 1.3
+    fixed_output_base_z_m: -0.86
+    outline_width: 0.05
+    publish_outline: true
+    publish_text_markers: false
+    publish_ego_marker: true
+    # Mirror dbscan ego box filter dimensions so the marker shows the effective mask volume.
+    ego_marker_x_m: 0.20
+    ego_marker_y_m: 0.00
+    ego_marker_yaw_deg: 0.0
+    ego_marker_length_m: 2.60
+    ego_marker_width_m: 1.50
+    ego_marker_height_m: 1.10
+    ego_marker_base_z_m: -0.67

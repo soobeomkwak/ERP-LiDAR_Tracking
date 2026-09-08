@@ -1,0 +1,14 @@
+build/
+install/
+log/
+__pycache__/
+*.py[cod]
+*.db3
+*.mcap
+*.bag
+*.pcap
+.env
+.env.*
+data/
+runs/
+external/

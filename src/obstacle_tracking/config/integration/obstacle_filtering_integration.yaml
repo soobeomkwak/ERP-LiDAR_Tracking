@@ -1,0 +1,6 @@
+obstacle_filtering:
+  ros__parameters:
+    publish_debug_text: false
+    publish_debug_cloud: false
+    diagnostic_periodic_log_enabled: true
+    diagnostic_startup_log_enabled: true

@@ -112,7 +112,7 @@ Relative Position / Velocity / TTC / Cut-in Risk
 
 ## Environment
 
-- **OS / Middleware:** Ubuntu + ROS2 Humble
+- **OS / Middleware:** Ubuntu 22.04 + ROS2 Humble
 - **Platform:** ERP42 Racing
 - **Sensor:** 32-channel 3D LiDAR
 - **Language:** C++
@@ -120,3 +120,11 @@ Relative Position / Velocity / TTC / Cut-in Risk
 ## Development Strategy
 
 Each new component will be evaluated against the existing baseline using the same recorded ROS2 bag data. Planned evaluation metrics include runtime, detection stability, ID switches, velocity estimation error, heading stability, and TTC consistency.
+
+## Published Perception Source
+
+The editable perception packages are now under [`src/`](src/): CUDA DBSCAN clustering, waypoint-aware obstacle filtering, L-shape fitting, obstacle tracking, and the perception launch wrapper. Their messages, configurations, launch files and existing package-local analysis tools are included.
+
+See [the source scope and build limitations](docs/PERCEPTION_SCOPE.md) for the actual topic/frame contracts and dependency requirements. Patchwork++ is used as an [attributed external dependency](THIRD_PARTY_NOTICES.md). The team localization/planning/control stack, private research records and datasets are not included.
+
+**Source snapshot status:** complete ROS/CUDA build and rosbag baseline measurements are pending. The current snapshot already contains L-shape fitting; the roadmap above describes further development. Do not interpret the introductory risk-estimation description as validation of TTC or relative-velocity outputs in this initial source snapshot.

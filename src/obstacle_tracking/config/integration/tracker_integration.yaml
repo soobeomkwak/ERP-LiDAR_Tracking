@@ -1,0 +1,5 @@
+obstacle_tracking_node:
+  ros__parameters:
+    marker_topic: /tracked/markers
+    debug_topic: ""
+    debug_log_period_sec: 1.0

@@ -1,0 +1,76 @@
+obstacle_tracking_node:
+  ros__parameters:
+    input_topic: /target/detections
+    output_topic: ""
+    marker_topic: /tracked/markers
+    debug_topic: /tracked/debug
+    perception_obstacles_topic: /perception/obstacles
+    map_frame: map
+    base_frame: base_link
+    queue_size: 10
+
+    # CV-KF in map frame — ego rotation never affects the process model
+    # 정지 장애물 기준 튜닝: 노이즈 저항 극대화, 속도 0 수렴
+    process_noise_pos: 0.05     # 작게: 정적 장애물 예측 안정
+    process_noise_vel_low: 0.5  # 정지/저속: 속도 랜덤워크 억제 → 정지 객체 속도 안정
+    process_noise_vel_high: 6.0 # 이동 객체: 빠른 속도 수렴 (0.6m/s 언더슈트 보정)
+    measurement_noise_x: 0.50   # L-shape 노이즈 감안, 측정 신뢰도 낮춤
+    measurement_noise_y: 0.50
+
+    # gate는 키워서 L-shape 시점 변화(~0.5~1m)도 흡수
+    # R=0.25, gate=25 → LOCKED(P=R) radius=sqrt(25*0.5)≈3.5m
+    gate_mahal_sq: 25.0
+
+    # Size gate — ERP42 기준 (L~1.8m, W~1.0m) + L-shape 노이즈 마진
+    track_max_length_m: 2.8
+    track_max_width_m: 1.8
+    track_max_area_m2: 5.0
+
+    # Lifecycle
+    confirm_hits: 2
+    max_missed_frames: 15          # 7Hz 기준 ~2.1초 연속 miss 시 제거
+    publish_unconfirmed: false
+    min_confidence_new: 0.20       # sparse far detections can start a 2-hit track
+    min_confidence_confirm: 0.18
+    confidence_decay: 0.97
+    confidence_alpha: 0.30
+
+    # Velocity
+    # 새 트랙 초기 속도 (ego 진행 방향, m/s). 0이면 새 track은 정지 속도로 시작.
+    # ego 저속 시 (ego_map_speed <= init_speed_min_ego_speed_mps) 자동으로 0으로 fallback.
+    # 정적 객체는 P_vel=100 덕분에 ~2프레임(0.28s) 안에 ZUPT 수렴.
+    init_speed_mps: 0.0
+    init_speed_min_ego_speed_mps: 1.0
+    velocity_decay_on_miss: 0.80        # 정지 객체 miss 시 속도 감쇠 (빠르게 0으로)
+    velocity_decay_on_miss_moving: 0.99 # 이동 객체 miss 시 감쇠 최소화 (속도 유지)
+    max_speed_mps: 8.0
+    max_measurement_jump_m: 2.0    # 회전 중 큰 점프 허용
+    static_clamp_mps: 0.60         # ZUPT: hypot(0.3,0.3)≈0.42 잡으려면 0.55 필요
+    static_pos_clamp_m: 0.20       # ZUPT: R=0.50 감안해서 완화
+    static_lock_hits: 15           # ZUPT 연속 N프레임 후 위치 고정 (10Hz 기준 ~1.5초)
+    static_unlock_m: 0.40          # 측정값이 locked 위치에서 이 이상 벗어나면 lock 해제
+
+    # Heading (EMA, base_link frame)
+    heading_alpha: 0.30
+    heading_freeze_speed_mps: 0.5
+
+    # Size smoothing
+    size_alpha: 0.20
+    size_shrink_max: 0.85
+    size_grow_max: 1.20
+
+    # Track reacquire
+    reacquire_sec: 2.0
+    reacquire_dist_m: 2.5
+
+    # Fragment suppression around confirmed tracks.
+    # Keep near-ego suppression strict, but relax far suppression so sparse
+    # detections beyond ~15m can become tracks after 2 consistent hits.
+    min_new_track_dist_m: 1.2
+    min_new_track_dist_far_m: 2.0
+    frag_near_range_m: 6.0
+    frag_far_range_m: 18.0
+
+    dt_min_sec: 0.02
+    dt_max_sec: 0.30
+    debug_period_sec: 1.0
